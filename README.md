@@ -9,8 +9,8 @@
 
 - git lone TensorFlow
 - goto TensorFlow/tensorflow/contrib/makefile
-
-
+- modify line 52 to `ANDROID_TYPES := -D__ANDROID_TYPES_FULL__`, which the original SLIM would cause session failure.
+- 
 ``` bash
 $ build_all_ios.sh -a x86_64 # for simulator, or armv7 / armv7s for real phone
 $ ./create_ios_framework

@@ -30,10 +30,19 @@ int greetings(char * display, const void * data, const int size)
     return -1;
   }
   GraphDef * graph = new GraphDef();
-  auto status = graph->ParseFromArray(data, size);
+  auto statusLoad = graph->ParseFromArray(data, size);
+
+  if (!statusLoad) {
+    strcpy(display, "protobuf loading failure");
+    return -2;
+  }
+
+  auto status = session->Create(*graph);
+
   delete graph;
   delete session;
   stringstream sout;
+  cout << status << endl;
   sout
   << "status: " << status << endl
   << "size = " << size << endl
