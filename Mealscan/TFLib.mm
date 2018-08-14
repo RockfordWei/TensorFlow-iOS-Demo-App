@@ -22,9 +22,17 @@ extern "C" int greetings(char * display, const void * data, const int size);
 
 int greetings(char * display, const void * data, const int size)
 {
+  Session * session;
+  SessionOptions options;
+  auto statusSession = NewSession(options, &session);
+  if (!statusSession.ok()) {
+    strcpy(display, "session failure");
+    return -1;
+  }
   GraphDef * graph = new GraphDef();
   auto status = graph->ParseFromArray(data, size);
   delete graph;
+  delete session;
   stringstream sout;
   sout
   << "status: " << status << endl

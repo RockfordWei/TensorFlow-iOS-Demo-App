@@ -15,6 +15,7 @@
 		315984882122012700859276 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 315984872122012700859276 /* main.m */; };
 		3192261A2122E5A400432115 /* TFLib.mm in Sources */ = {isa = PBXBuildFile; fileRef = 319226192122E5A400432115 /* TFLib.mm */; };
 		319226232122E82100432115 /* tensorflow_experimental.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3192261D2122E7AC00432115 /* tensorflow_experimental.framework */; };
+		319226252123714600432115 /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 319226242123714600432115 /* Accelerate.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -31,6 +32,7 @@
 		319226192122E5A400432115 /* TFLib.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = TFLib.mm; sourceTree = "<group>"; };
 		3192261C2122E64C00432115 /* TFLib.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TFLib.h; sourceTree = "<group>"; };
 		3192261D2122E7AC00432115 /* tensorflow_experimental.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = tensorflow_experimental.framework; sourceTree = "<group>"; };
+		319226242123714600432115 /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = System/Library/Frameworks/Accelerate.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -38,6 +40,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				319226252123714600432115 /* Accelerate.framework in Frameworks */,
 				319226232122E82100432115 /* tensorflow_experimental.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -83,6 +86,7 @@
 		319226222122E82100432115 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				319226242123714600432115 /* Accelerate.framework */,
 				3192261D2122E7AC00432115 /* tensorflow_experimental.framework */,
 			);
 			name = Frameworks;
@@ -320,6 +324,8 @@
 				OTHER_LDFLAGS = (
 					"-lprotobuf_experimental",
 					"-lnsync",
+					"-force_load",
+					"$(PROJECT_DIR)/tensorflow_experimental.framework/tensorflow_experimental",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = PerfectlySoft.Mealscan;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -350,6 +356,8 @@
 				OTHER_LDFLAGS = (
 					"-lprotobuf_experimental",
 					"-lnsync",
+					"-force_load",
+					"$(PROJECT_DIR)/tensorflow_experimental.framework/tensorflow_experimental",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = PerfectlySoft.Mealscan;
 				PRODUCT_NAME = "$(TARGET_NAME)";
