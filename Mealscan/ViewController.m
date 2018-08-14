@@ -28,7 +28,10 @@
 
 
 - (IBAction)click:(id)sender {
-  _textStatus.text = [NSString stringWithUTF8String:greetings(NULL)];
+  NSDataAsset * frozen = [[NSDataAsset alloc] initWithName:@"FrozenPB"];
+  char display[1024] = "";
+  greetings(display, frozen.data.bytes, frozen.data.length);
+  _textStatus.text = [NSString stringWithUTF8String:display] ;
 }
 
 @end

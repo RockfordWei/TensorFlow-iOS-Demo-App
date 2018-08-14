@@ -8,6 +8,8 @@
 
 #import <Foundation/Foundation.h>
 #include <string>
+#include <cstdio>
+#include <cstring>
 
 using namespace std;
 
@@ -15,16 +17,19 @@ using namespace std;
 
 using namespace tensorflow;
 
-extern "C" char * greetings(void * data);
+extern "C" int greetings(char * display, const void * data, const size_t size);
 
-char * greetings(void * data)
+int greetings(char * display, const void * data, const size_t size)
 {
   Tensor * placeholder = new Tensor();
   auto dim = placeholder->dims();
   delete placeholder;
 
-  stringstream str;
-  str << "dim = " << dim;
-  auto hola = str.str();
-  return (char *)hola.c_str();
+  stringstream sout;
+  sout << "dim = " << dim << endl
+  << "size = " << size << endl
+  << "address = " << data << endl;
+  auto output = sout.str();
+  strcpy(display, output.c_str());
+  return 0;
 }

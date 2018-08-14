@@ -9,6 +9,6 @@
 #ifndef TFLib_h
 #define TFLib_h
 
-extern char * greetings(void * data);
+extern int greetings(char * display, const void * data, const size_t size);
 
 #endif /* TFLib_h */
