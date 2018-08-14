@@ -26,7 +26,7 @@ int greetings(char * display, const void * data, const size_t size)
   delete placeholder;
 
   stringstream sout;
-  sout << "dim = " << dim << endl
+  sout << "dimension = " << dim << endl
   << "size = " << size << endl
   << "address = " << data << endl;
   auto output = sout.str();
