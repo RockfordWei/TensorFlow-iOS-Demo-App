@@ -9,7 +9,8 @@
 #import <UIKit/UIKit.h>
 
 @interface ViewController : UIViewController
-@property (weak, nonatomic) IBOutlet UITextField *status;
+@property (weak, nonatomic) IBOutlet UITextView *textStatus;
+@property (weak, nonatomic) IBOutlet UIImageView *preview;
 
 - (IBAction)click:(id)sender;
 

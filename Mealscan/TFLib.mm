@@ -15,9 +15,9 @@ using namespace std;
 
 using namespace tensorflow;
 
-extern "C" char * greetings(void);
+extern "C" char * greetings(void * data);
 
-char * greetings(void)
+char * greetings(void * data)
 {
   Tensor * placeholder = new Tensor();
   auto dim = placeholder->dims();

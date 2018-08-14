@@ -28,7 +28,7 @@
 
 
 - (IBAction)click:(id)sender {
-  _status.text = [NSString stringWithUTF8String:greetings()];
+  _textStatus.text = [NSString stringWithUTF8String:greetings(NULL)];
 }
 
 @end
