@@ -13,20 +13,21 @@
 
 using namespace std;
 
-#import "tensorflow_experimental/tensorflow/core/framework/tensor.h"
+#import "tensorflow_experimental/tensorflow/core/public/session.h"
+#import "tensorflow_experimental/tensorflow/cc/framework/scope.h"
 
 using namespace tensorflow;
 
-extern "C" int greetings(char * display, const void * data, const size_t size);
+extern "C" int greetings(char * display, const void * data, const int size);
 
-int greetings(char * display, const void * data, const size_t size)
+int greetings(char * display, const void * data, const int size)
 {
-  Tensor * placeholder = new Tensor();
-  auto dim = placeholder->dims();
-  delete placeholder;
-
+  GraphDef * graph = new GraphDef();
+  auto status = graph->ParseFromArray(data, size);
+  delete graph;
   stringstream sout;
-  sout << "dimension = " << dim << endl
+  sout
+  << "status: " << status << endl
   << "size = " << size << endl
   << "address = " << data << endl;
   auto output = sout.str();
