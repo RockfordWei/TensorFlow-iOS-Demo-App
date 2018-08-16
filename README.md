@@ -19,10 +19,19 @@ bazel-bin/tensorflow/tools/graph_transforms/transform_graph \
 --inputs='image_tensor' \
 --outputs='num_detections,detection_boxes,detection_scores,detection_classes' \
 --transforms='
+  add_default_attributes
   strip_unused_nodes(type=float, shape="1,512,512,3")
+  remove_nodes(op=Identity, op=CheckNumerics)
   fold_constants(ignore_errors=true)
   fold_batch_norms
-  fold_old_batch_norms'
+  fold_old_batch_norms
+  quantize_weights
+  quantize_nodes
+  flatten_atrous_conv
+  merge_duplicate_nodes
+  remove_device
+  strip_unused_nodes
+  sort_by_execution_order'
 	
 $ build_all_ios.sh -a x86_64 -g $(PROJECT_DIR)/xxx.pb # for simulator, or armv7 / armv7s for real phone
 $ ./create_ios_framework
