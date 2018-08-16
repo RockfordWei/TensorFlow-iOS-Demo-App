@@ -51,23 +51,48 @@ int greetings(char * display, const void * data, const int size, const void * im
     return -2;
   }
 
-  auto status = session->Create(*graph);
+  auto statusSessionIni = session->Create(*graph);
+  if (!statusSessionIni.ok()) {
+    strcpy(display, "session initial failure");
+    return -3;
+  }
 
   auto image = stripe_alpha(image_data_ref, image_size);
 
-  uint8 * v = (uint8 * ) image.data();
-  stringstream sout;
-  sout << status << endl;
-  sout
-  << "status: " << status << endl
-  << "size = " << size << endl
-  << "address = " << data << endl;
-  sout << "buffer ";
-  for(int i = 0; i < 8; i++) {
-    sout << (int)v[i] << " ";
+  Tensor image_tensor(DT_UINT8, TensorShape({1, 512, 512, 3}));
+
+  auto image_tensor_data = image_tensor.tensor_data();
+  std::memcpy((char *)image_tensor_data.data(), image.data(), image.size());
+
+  std::vector<std::pair<std::string, tensorflow::Tensor>> inputs = {
+    {"image_tensor:0", image_tensor}
+  };
+
+  std::vector<string> output_names = {
+    {"num_detections:0"}, {"detection_boxes:0"},
+    {"detection_scores:0"}, {"detection_classes:0"}
+  };
+
+  std::vector<tensorflow::Tensor> outputs;
+
+  auto status = session->Run(inputs, output_names, {}, &outputs);
+
+  if (!status.ok()) {
+    strcpy(display, "session run failure");
+    return -4;
   }
-  sout << endl << "image = " << image_size << endl
-  << "new size = " << image.size() << endl;
+
+  auto num_detections = outputs[0].tensor<float, 1>();
+  auto boxes = outputs[1].flat<float>();
+  auto scores = outputs[2].flat<float>();
+  auto classes = outputs[3].flat<float>();
+  stringstream sout;
+  sout
+  << "num_detections: " << num_detections << endl
+  << "detection_boxes: " << boxes(0) << " " << boxes(1) << " " << boxes(2) << " " << boxes(3) << " " << endl
+  << "detection_scores: " << scores(0) << " " << scores(1) << " " << scores(2) << " " << scores(3) << " " << endl
+  << "detection_classes: " << classes(0) << " " << classes(1) << " " << classes(2) << " " << classes(3) << " " << endl
+  ;
   auto output = sout.str();
   strcpy(display, output.c_str());
 
