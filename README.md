@@ -67,10 +67,4 @@ $(PROJECT_DIR)/tensorflow_experimental.framework
 ## Important Fix
 https://github.com/tensorflow/tensorflow/issues/9073
 
-Alright @cwhipkey it worked! The full solution I used is as follows:
-
-Build the print_selective_registration_header with the right macro for iOS
-//$ bazel build --copt="-DUSE_GEMM_FOR_CONV" tensorflow/python/tools/print_selective_registration_header
-Generate a header in the right path, i.e.
 $ bazel-bin/tensorflow/python/tools/print_selective_registration_header --graphs=$(PROJECT_DIR).pb > tensorflow/core/framework/ops_to_register.h
-In my case, the resulting libtensorflow-core.a is 45% smaller, the universal .ipa is 6.1MB lighter, and the unzipped payload is 19.5MB lighter. (Of course, your mileage may vary depending on the graph you are using selective registration on.) Thanks everyone!

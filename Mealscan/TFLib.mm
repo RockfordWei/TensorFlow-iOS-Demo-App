@@ -7,9 +7,10 @@
 //
 
 #import <Foundation/Foundation.h>
-#include <string>
 #include <cstdio>
 #include <cstring>
+#include <string>
+#include <vector>
 
 using namespace std;
 
@@ -18,9 +19,22 @@ using namespace std;
 
 using namespace tensorflow;
 
-extern "C" int greetings(char * display, const void * data, const int size);
+extern "C" int greetings(char * display, const void * data, const int size, const void * image_data_ref, const int image_size);
 
-int greetings(char * display, const void * data, const int size)
+// convert RGBA to RGB
+std::vector<unsigned char> stripe_alpha(const void * data, const size_t size)
+{
+  vector<unsigned char> target{};
+  unsigned char * base = (unsigned char *)data;
+  size_t i = 0;
+  for (auto it = base; it < base + size; it++) {
+    if (i++ % 4 == 3) continue;
+    target.push_back(*it);
+  }
+  return target;
+}
+
+int greetings(char * display, const void * data, const int size, const void * image_data_ref, const int image_size)
 {
   Session * session;
   SessionOptions options;
@@ -39,15 +53,26 @@ int greetings(char * display, const void * data, const int size)
 
   auto status = session->Create(*graph);
 
-  delete graph;
-  delete session;
+  auto image = stripe_alpha(image_data_ref, image_size);
+
+  uint8 * v = (uint8 * ) image.data();
   stringstream sout;
-  cout << status << endl;
+  sout << status << endl;
   sout
   << "status: " << status << endl
   << "size = " << size << endl
   << "address = " << data << endl;
+  sout << "buffer ";
+  for(int i = 0; i < 8; i++) {
+    sout << (int)v[i] << " ";
+  }
+  sout << endl << "image = " << image_size << endl
+  << "new size = " << image.size() << endl;
   auto output = sout.str();
   strcpy(display, output.c_str());
+
+  delete graph;
+  delete session;
+
   return 0;
 }
