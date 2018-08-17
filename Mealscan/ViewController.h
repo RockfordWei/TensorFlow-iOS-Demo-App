@@ -7,12 +7,18 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <Photos/Photos.h>
 
 @interface ViewController : UIViewController
+  <UIImagePickerControllerDelegate, UINavigationControllerDelegate>
+
 @property (weak, nonatomic) IBOutlet UITextView *textStatus;
 @property (weak, nonatomic) IBOutlet UIImageView *preview;
 
-- (IBAction)click:(id)sender;
+@property (strong, nonatomic) UIImagePickerController *picker;
+
+- (IBAction)clickScan:(id)sender;
+- (IBAction)clickLoad:(id)sender;
 
 @end
 

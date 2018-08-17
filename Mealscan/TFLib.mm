@@ -19,7 +19,9 @@ using namespace std;
 
 using namespace tensorflow;
 
-extern "C" int greetings(char * display, const void * data, const int size, const void * image_data_ref, const int image_size);
+extern "C" int greetings(char * display, const void * data, const int size,
+                         const void * image_data_ref, const int image_size,
+                         const int image_width, const int image_height);
 
 // convert RGBA to RGB
 std::vector<unsigned char> stripe_alpha(const void * data, const size_t size)
@@ -34,7 +36,9 @@ std::vector<unsigned char> stripe_alpha(const void * data, const size_t size)
   return target;
 }
 
-int greetings(char * display, const void * data, const int size, const void * image_data_ref, const int image_size)
+int greetings(char * display, const void * data, const int size,
+              const void * image_data_ref, const int image_size,
+              const int image_width, const int image_height)
 {
   Session * session;
   SessionOptions options;
@@ -59,7 +63,7 @@ int greetings(char * display, const void * data, const int size, const void * im
 
   auto image = stripe_alpha(image_data_ref, image_size);
 
-  Tensor image_tensor(DT_UINT8, TensorShape({1, 512, 512, 3}));
+  Tensor image_tensor(DT_UINT8, TensorShape({1, image_width, image_height, 3}));
 
   auto image_tensor_data = image_tensor.tensor_data();
   std::memcpy((char *)image_tensor_data.data(), image.data(), image.size());
