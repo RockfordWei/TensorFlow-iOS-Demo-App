@@ -7,10 +7,6 @@
 //
 
 #import "ViewController.h"
-#import "TFLib.h"
-
-#import <CoreImage/CoreImage.h>
-#import <ImageIO/ImageIO.h>
 
 
 @interface ViewController ()
@@ -25,40 +21,46 @@
   self.picker.delegate = (id)self;
   self.picker.allowsEditing = NO;
   self.picker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+
+  self.tesseract = [[G8Tesseract alloc] initWithLanguage:@"eng"];
+  [self.tesseract setDelegate:(id)self];
+  //[self.tesseract setRect:CGRectMake(0, 0, 512, 512)];
+  [self.tesseract setCharWhitelist:@"0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ=+-*/:."];
+  //[self.tesseract setMaximumRecognitionTime:2.0];
+  [self.progressor setHidden:TRUE];
+
 }
 
 
 - (void)didReceiveMemoryWarning {
   [super didReceiveMemoryWarning];
-  // Dispose of any resources that can be recreated.
 }
 
 
 - (IBAction)clickScan:(id)sender {
-  dispatch_async(dispatch_get_main_queue(), ^{
-    CGImageRef image_ref = CGImageCreateCopy( [self.preview.image CGImage] );
-    int width = (int)CGImageGetWidth(image_ref);
-    int height = (int)CGImageGetHeight(image_ref);
-    CGDataProviderRef provider = CGImageGetDataProvider(image_ref);
-    CFDataRef data_ref = CGDataProviderCopyData(provider);
-    NSData * data = (__bridge_transfer NSData*)data_ref;
-    NSDataAsset * frozen = [[NSDataAsset alloc] initWithName:@"FrozenPB"];
-    char display[1024] = "";
-    greetings(display, frozen.data.bytes,
-              (int)frozen.data.length, [data bytes],
-              (int)[data length], width, height);
-    self.textStatus.text = [NSString stringWithUTF8String:display] ;
+  [self.tesseract setImage:self.preview.image];
+  [self.progressor setHidden:FALSE];
+  dispatch_queue_t que = dispatch_queue_create("meal_scanner", NULL);
+  dispatch_async(que, ^{
+    [self.tesseract recognize];
+    dispatch_async(dispatch_get_main_queue(), ^{
+      [self.textStatus setText:[self.tesseract recognizedText]];
+      [self.progressor setHidden:TRUE];
+    });
   });
 }
 
 - (void)imagePickerController:(UIImagePickerController *) picker
   didFinishPickingMediaWithInfo:(NSDictionary *)info {
   [picker dismissViewControllerAnimated:YES completion:^{
-    UIImage *chosenImage = info[UIImagePickerControllerOriginalImage];
-    if (chosenImage) {
-      self.preview.image = chosenImage;
-      self.textStatus.text = @"Picture Loaded" ;
-    }
+    dispatch_async(dispatch_get_main_queue(), ^{
+      UIImage *chosenImage = info[UIImagePickerControllerOriginalImage];
+      if (chosenImage) {
+        [self.progressor setProgress:0];
+        [self.textStatus setText:@"Photo loaded"];
+        [self.preview setImage:chosenImage];
+      }
+    });
   }];
 }
 
@@ -72,5 +74,15 @@
 
 - (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker {
   [picker dismissViewControllerAnimated:YES completion:NULL];
+}
+
+- (void)progressImageRecognitionForTesseract:(G8Tesseract *)tesseract {
+  dispatch_async(dispatch_get_main_queue(), ^{
+    [self.progressor setProgress:tesseract.progress/100.0 animated:YES];
+  });
+}
+
+- (BOOL)shouldCancelImageRecognitionForTesseract:(G8Tesseract *)tesseract {
+  return NO;  // return YES, if you need to interrupt tesseract before it finishes
 }
 @end

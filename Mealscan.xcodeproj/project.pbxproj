@@ -7,20 +7,33 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		312D01F42125F8DB005F5925 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 312D01F32125F8DA005F5925 /* README.md */; };
+		311CF6EB212763B800BC8830 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 311CF6EA212763B700BC8830 /* CoreGraphics.framework */; };
+		311CF7342127C19400BC8830 /* TesseractOCR.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 311CF7332127C19400BC8830 /* TesseractOCR.framework */; };
+		311CF7362127C1A000BC8830 /* CoreImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 311CF7352127C1A000BC8830 /* CoreImage.framework */; };
+		311CF7382127C1AA00BC8830 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 311CF7372127C1AA00BC8830 /* UIKit.framework */; };
+		311CF73A2127C1B200BC8830 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 311CF7392127C1B200BC8830 /* Foundation.framework */; };
+		311CF73C2127C1B900BC8830 /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 311CF73B2127C1B800BC8830 /* CoreFoundation.framework */; };
+		311CF73E2127C26500BC8830 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 311CF73D2127C26500BC8830 /* libz.tbd */; };
+		311CF7402127C5FE00BC8830 /* tessdata in Resources */ = {isa = PBXBuildFile; fileRef = 311CF73F2127C5FE00BC8830 /* tessdata */; };
 		3159847A2122012600859276 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 315984792122012600859276 /* AppDelegate.m */; };
 		3159847D2122012600859276 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3159847C2122012600859276 /* ViewController.m */; };
 		315984802122012600859276 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3159847E2122012600859276 /* Main.storyboard */; };
 		315984822122012700859276 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 315984812122012700859276 /* Assets.xcassets */; };
 		315984852122012700859276 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 315984832122012700859276 /* LaunchScreen.storyboard */; };
 		315984882122012700859276 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 315984872122012700859276 /* main.m */; };
-		3192261A2122E5A400432115 /* TFLib.mm in Sources */ = {isa = PBXBuildFile; fileRef = 319226192122E5A400432115 /* TFLib.mm */; };
-		319226232122E82100432115 /* tensorflow_experimental.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3192261D2122E7AC00432115 /* tensorflow_experimental.framework */; };
 		319226252123714600432115 /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 319226242123714600432115 /* Accelerate.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		312D01F32125F8DA005F5925 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		311CF6EA212763B700BC8830 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		311CF7332127C19400BC8830 /* TesseractOCR.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = TesseractOCR.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		311CF7352127C1A000BC8830 /* CoreImage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreImage.framework; path = System/Library/Frameworks/CoreImage.framework; sourceTree = SDKROOT; };
+		311CF7372127C1AA00BC8830 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		311CF7392127C1B200BC8830 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		311CF73B2127C1B800BC8830 /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = System/Library/Frameworks/CoreFoundation.framework; sourceTree = SDKROOT; };
+		311CF73D2127C26500BC8830 /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
+		311CF73F2127C5FE00BC8830 /* tessdata */ = {isa = PBXFileReference; lastKnownFileType = folder; path = tessdata; sourceTree = SOURCE_ROOT; };
+		311CF7442127C65400BC8830 /* tessconfigs */ = {isa = PBXFileReference; lastKnownFileType = folder; name = tessconfigs; path = tessdata/tessconfigs; sourceTree = "<group>"; };
 		315984752122012600859276 /* Mealscan.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Mealscan.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		315984782122012600859276 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		315984792122012600859276 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -31,9 +44,6 @@
 		315984842122012700859276 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		315984862122012700859276 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		315984872122012700859276 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		319226192122E5A400432115 /* TFLib.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = TFLib.mm; sourceTree = "<group>"; };
-		3192261C2122E64C00432115 /* TFLib.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TFLib.h; sourceTree = "<group>"; };
-		3192261D2122E7AC00432115 /* tensorflow_experimental.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = tensorflow_experimental.framework; sourceTree = "<group>"; };
 		319226242123714600432115 /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = System/Library/Frameworks/Accelerate.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
@@ -42,8 +52,14 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				311CF73E2127C26500BC8830 /* libz.tbd in Frameworks */,
+				311CF73C2127C1B900BC8830 /* CoreFoundation.framework in Frameworks */,
+				311CF73A2127C1B200BC8830 /* Foundation.framework in Frameworks */,
+				311CF7382127C1AA00BC8830 /* UIKit.framework in Frameworks */,
+				311CF7362127C1A000BC8830 /* CoreImage.framework in Frameworks */,
+				311CF7342127C19400BC8830 /* TesseractOCR.framework in Frameworks */,
+				311CF6EB212763B800BC8830 /* CoreGraphics.framework in Frameworks */,
 				319226252123714600432115 /* Accelerate.framework in Frameworks */,
-				319226232122E82100432115 /* tensorflow_experimental.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -53,7 +69,7 @@
 		3159846C2122012600859276 = {
 			isa = PBXGroup;
 			children = (
-				312D01F32125F8DA005F5925 /* README.md */,
+				311CF7442127C65400BC8830 /* tessconfigs */,
 				315984772122012600859276 /* Mealscan */,
 				315984762122012600859276 /* Products */,
 				319226222122E82100432115 /* Frameworks */,
@@ -71,6 +87,7 @@
 		315984772122012600859276 /* Mealscan */ = {
 			isa = PBXGroup;
 			children = (
+				311CF73F2127C5FE00BC8830 /* tessdata */,
 				315984782122012600859276 /* AppDelegate.h */,
 				315984792122012600859276 /* AppDelegate.m */,
 				3159847B2122012600859276 /* ViewController.h */,
@@ -80,8 +97,6 @@
 				315984832122012700859276 /* LaunchScreen.storyboard */,
 				315984862122012700859276 /* Info.plist */,
 				315984872122012700859276 /* main.m */,
-				319226192122E5A400432115 /* TFLib.mm */,
-				3192261C2122E64C00432115 /* TFLib.h */,
 			);
 			path = Mealscan;
 			sourceTree = "<group>";
@@ -89,8 +104,14 @@
 		319226222122E82100432115 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				311CF73D2127C26500BC8830 /* libz.tbd */,
+				311CF73B2127C1B800BC8830 /* CoreFoundation.framework */,
+				311CF7392127C1B200BC8830 /* Foundation.framework */,
+				311CF7372127C1AA00BC8830 /* UIKit.framework */,
+				311CF7352127C1A000BC8830 /* CoreImage.framework */,
+				311CF7332127C19400BC8830 /* TesseractOCR.framework */,
+				311CF6EA212763B700BC8830 /* CoreGraphics.framework */,
 				319226242123714600432115 /* Accelerate.framework */,
-				3192261D2122E7AC00432115 /* tensorflow_experimental.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -153,8 +174,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				315984852122012700859276 /* LaunchScreen.storyboard in Resources */,
+				311CF7402127C5FE00BC8830 /* tessdata in Resources */,
 				315984822122012700859276 /* Assets.xcassets in Resources */,
-				312D01F42125F8DB005F5925 /* README.md in Resources */,
 				315984802122012600859276 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -169,7 +190,6 @@
 				3159847D2122012600859276 /* ViewController.m in Sources */,
 				315984882122012700859276 /* main.m in Sources */,
 				3159847A2122012600859276 /* AppDelegate.m in Sources */,
-				3192261A2122E5A400432115 /* TFLib.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -309,27 +329,23 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_CXX_LANGUAGE_STANDARD = "c++17";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = WPN7XGDJR6;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
 				);
-				HEADER_SEARCH_PATHS = (
-					"$(PROJECT_DIR)/tensorflow_experimental.framework/Headers",
-					"$(PROJECT_DIR)/tensorflow_experimental.framework/Headers/third_party/eigen3",
-				);
+				HEADER_SEARCH_PATHS = "";
 				INFOPLIST_FILE = Mealscan/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				LIBRARY_SEARCH_PATHS = "$(PROJECT_DIR)/tensorflow_experimental.framework";
+				LIBRARY_SEARCH_PATHS = "";
 				OTHER_LDFLAGS = (
-					"-lprotobuf_experimental",
-					"-lnsync",
-					"-force_load",
-					"$(PROJECT_DIR)/tensorflow_experimental.framework/tensorflow_experimental",
+					"-lstdc++",
+					"-ObjC",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = PerfectlySoft.Mealscan;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -341,27 +357,23 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_CXX_LANGUAGE_STANDARD = "c++17";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = WPN7XGDJR6;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
 				);
-				HEADER_SEARCH_PATHS = (
-					"$(PROJECT_DIR)/tensorflow_experimental.framework/Headers",
-					"$(PROJECT_DIR)/tensorflow_experimental.framework/Headers/third_party/eigen3",
-				);
+				HEADER_SEARCH_PATHS = "";
 				INFOPLIST_FILE = Mealscan/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				LIBRARY_SEARCH_PATHS = "$(PROJECT_DIR)/tensorflow_experimental.framework";
+				LIBRARY_SEARCH_PATHS = "";
 				OTHER_LDFLAGS = (
-					"-lprotobuf_experimental",
-					"-lnsync",
-					"-force_load",
-					"$(PROJECT_DIR)/tensorflow_experimental.framework/tensorflow_experimental",
+					"-lstdc++",
+					"-ObjC",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = PerfectlySoft.Mealscan;
 				PRODUCT_NAME = "$(TARGET_NAME)";
